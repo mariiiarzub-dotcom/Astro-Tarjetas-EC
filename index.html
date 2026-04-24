@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Astro Tarjetas EC</title>
+
+<!-- Fuente tech -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#00aaff;
+  --blue2:#3cc6ff;
+  --cyan:#00ffd5;
+  --bg:#020617;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--blue2);font-family:Orbitron, monospace;overflow-x:hidden}
+
+/* CANVAS BACKGROUNDS */
+#matrix, #particles{
+  position:fixed; inset:0; z-index:0;
+}
+
+/* SCANLINES */
+.scanlines::after{
+  content:""; position:fixed; inset:0; z-index:1; pointer-events:none;
+  background:repeating-linear-gradient(0deg, rgba(0,170,255,.06), rgba(0,170,255,.06) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode:screen;
+}
+
+/* WRAPPER */
+.container{position:relative; z-index:2; padding:28px 16px 80px; max-width:1100px; margin:auto}
+
+/* GLITCH TITLE */
+.glitch{
+  font-size: clamp(28px, 6vw, 64px);
+  font-weight:800; text-align:center; letter-spacing:2px;
+  position:relative; color:#e6f7ff;
+  text-shadow:0 0 10px var(--blue), 0 0 20px var(--blue);
+}
+.glitch::before,.glitch::after{
+  content:attr(data-text); position:absolute; left:0; right:0; top:0;
+}
+.glitch::before{ color:#ff2a6d; transform:translate(2px,0); clip-path:inset(0 0 50% 0); animation:gl1 2s infinite linear alternate-reverse}
+.glitch::after{ color:#00e5ff; transform:translate(-2px,0); clip-path:inset(50% 0 0 0); animation:gl2 1.6s infinite linear alternate-reverse}
+@keyframes gl1{0%{transform:translate(0,0)}100%{transform:translate(3px,-2px)}}
+@keyframes gl2{0%{transform:translate(0,0)}100%{transform:translate(-3px,2px)}}
+
+/* HERO */
+.hero{ text-align:center; margin-top:10px}
+.tag{opacity:.9; margin-top:8px}
+.cta{
+  display:inline-block; margin-top:18px; padding:14px 22px; border-radius:12px;
+  background:linear-gradient(90deg, var(--blue), var(--cyan));
+  color:#001018; font-weight:700; text-decoration:none;
+  box-shadow:0 0 20px var(--blue), 0 0 40px rgba(0,170,255,.5);
+}
+
+/* GRID */
+.grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px; margin-top:26px}
+.card{
+  border:1px solid rgba(0,170,255,.5); border-radius:14px; padding:16px;
+  background:rgba(0, 20, 40, .45);
+  backdrop-filter: blur(6px);
+  box-shadow:0 0 18px rgba(0,170,255,.25);
+}
+
+/* SECTION TITLE */
+.h2{margin-top:28px; text-align:center; font-weight:600; letter-spacing:1px}
+
+/* COUNTERS */
+.counters{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:16px}
+.counter{
+  min-width:160px; text-align:center; padding:16px; border-radius:12px;
+  border:1px solid rgba(0,255,213,.5);
+  box-shadow:0 0 16px rgba(0,255,213,.35);
+}
+.num{font-size:28px; color:var(--cyan); margin-bottom:6px}
+
+/* TICKER */
+.ticker{
+  margin-top:26px; overflow:hidden; white-space:nowrap; border-top:1px solid rgba(0,170,255,.3); border-bottom:1px solid rgba(0,170,255,.3);
+}
+.ticker-track{
+  display:inline-block; padding:10px 0; animation:scroll 18s linear infinite;
+}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* FOOTER */
+.footer{margin-top:28px; text-align:center; font-size:12px; opacity:.8}
+
+/* FLOAT BUTTONS */
+.float{
+  position:fixed; right:16px; bottom:16px; z-index:3; display:flex; flex-direction:column; gap:10px
+}
+.fbtn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:54px; height:54px; border-radius:50%;
+  background:linear-gradient(90deg, var(--blue), var(--cyan));
+  color:#001018; text-decoration:none; font-weight:900;
+  box-shadow:0 0 18px var(--blue);
+}
+
+/* SMALL */
+small{opacity:.85}
+</style>
+</head>
+
+<body class="scanlines">
+
+<canvas id="matrix"></canvas>
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="glitch" data-text="ASTRO TARJETAS EC">ASTRO TARJETAS EC</div>
+    <div class="tag">💳 Tarjetas recargadas físicas y virtuales</div>
+    <div class="tag">Compra • Recarga • Usa • Retira</div>
+<a class="cta" href="https://t.me/system_ec" target="_blank">ÚNETE A TELEGRAM</a>
+  </div>
+
+  <div class="h2">SISTEMA ACTIVO</div>
+  <div class="grid">
+    <div class="card">✔ Uso nacional e internacional</div>
+    <div class="card">⚡ Entrega inmediata (digital)</div>
+    <div class="card">📦 Envío físico (Servientrega)</div>
+    <div class="card">🧭 Asesoría hasta tu primera compra</div>
+  </div>
+
+  <div class="h2">BENEFICIOS</div>
+  <div class="grid">
+    <div class="card">Compras online y en tiendas</div>
+    <div class="card">Control de saldo</div>
+    <div class="card">Recargas rápidas</div>
+    <div class="card">Compatibilidad con apps</div>
+  </div>
+
+  <div class="h2">MÉTRICAS</div>
+  <div class="counters">
+    <div class="counter"><div class="num" data-target="1000">0</div><small>CLIENTES</small></div>
+    <div class="counter"><div class="num" data-target="24">0</div><small>SOPORTE (H)</small></div>
+    <div class="counter"><div class="num" data-target="99">0</div><small>DISPONIBILIDAD %</small></div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      🔵 Usuario verificado • Entrega correcta • Soporte respondió en minutos • Compra online exitosa • Recarga completada • 
+      🔵 Usuario verificado • Entrega correcta • Soporte respondió en minutos • Compra online exitosa • Recarga completada •
+    </div>
+  </div>
+
+  <div class="h2">AVISO</div>
+  <div class="card" style="max-width:780px;margin:12px auto">
+    Operamos mediante herramientas digitales y métodos alternativos. No somos entidad financiera.
+    El uso depende del cliente y del saldo disponible. Incluye asesoría y acompañamiento.
+  </div>
+
+  <div class="h2">CONTACTO</div>
+  <div class="grid">
+    <div class="card">Telegram: https://t.me/system_ec</div>
+    <div class="card">WhatsApp: +593XXXXXXXXX</div>
+  </div>
+
+  <div class="footer">
+    © 2026 Astro Tarjetas EC · Todos los derechos reservados
+  </div>
+
+</div>
+
+<div class="float">
+  <a class="fbtn" href="https://wa.me/593XXXXXXXXX" target="_blank">💬</a>
+  <a class="fbtn" href="https://t.me/system_ec" target="_blank">✈️</a>
+</div>
+
+<script>
+// ===== MATRIX RAIN =====
+const c = document.getElementById('matrix');
+const ctx = c.getContext('2d');
+function resize(){ c.width = innerWidth; c.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+
+const letters = '01ASTRO$#';
+const fontSize = 14;
+let columns = Math.floor(c.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function drawMatrix(){
+  ctx.fillStyle = 'rgba(2,6,23,0.08)';
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle = '#00aaff';
+  ctx.font = fontSize + 'px monospace';
+  for(let i=0;i<drops.length;i++){
+    const text = letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+    if(drops[i]*fontSize > c.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix, 33);
+
+// ===== PARTICLES =====
+const p = document.getElementById('particles');
+const pctx = p.getContext('2d');
+function presize(){ p.width = innerWidth; p.height = innerHeight; }
+presize(); addEventListener('resize', presize);
+
+const parts = Array.from({length:80}, () => ({
+  x: Math.random()*p.width,
+  y: Math.random()*p.height,
+  r: Math.random()*2+1,
+  vx:(Math.random()-0.5)*0.6,
+  vy:(Math.random()-0.5)*0.6
+}));
+
+function drawParticles(){
+  pctx.clearRect(0,0,p.width,p.height);
+  parts.forEach(pt=>{
+    pt.x+=pt.vx; pt.y+=pt.vy;
+    if(pt.x<0||pt.x>p.width) pt.vx*=-1;
+    if(pt.y<0||pt.y>p.height) pt.vy*=-1;
+    pctx.beginPath();
+    pctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);
+    pctx.fillStyle='rgba(0,170,255,.7)';
+    pctx.fill();
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ===== COUNTERS =====
+document.querySelectorAll('.num').forEach(el=>{
+  const target = +el.dataset.target;
+  let n = 0;
+  const step = Math.max(1, Math.floor(target/60));
+  const int = setInterval(()=>{
+    n += step;
+    if(n >= target){ n = target; clearInterval(int); }
+    el.textContent = n;
+  }, 30);
+});
+</script>
+
+</body>
+</html>
